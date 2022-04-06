@@ -1,0 +1,11 @@
+﻿@model TestPostfix.Models.Mailbox;
+
+@{
+    ViewData["Title"] = "Delete mail";
+}
+<form asp-controller="Home" asp-action="MailboxDelete" asp-route-id="@Model.Id">
+    <div>
+        <label>Delete this mailbox - @Model.Name??</label>
+    </div>
+    <div><button formmethod="post"> Delete </button><button asp-action="Index"> Cancel </button></div>
+</form>

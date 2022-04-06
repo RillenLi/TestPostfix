@@ -1,0 +1,34 @@
+﻿@model IEnumerable<TestPostfix.Models.Alias>
+@{
+    ViewData["Title"] = "Alias list";
+}
+<div>
+    <form asp-controller="Home" asp-action="AliasList">
+        <table id="list" width=60%>
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td>@a.Name@@@a.Domain.Name</td>
+                        <td>@a.MailToSent</td>
+                        @{
+                            string act;
+                            if (a.Active) act = "YES";
+                            else act = "NO";
+                        }
+                        <td>@act</td>
+                        <td><a asp-controller="Home" asp-action="AliasEdit" asp-route-id="@a.Id">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="AliasDelete" asp-route-id="@a.Id">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+﻿@model TestPostfix.Models.Domain;
+
+@{
+    ViewData["Title"] = "Delete domain";
+}
+<form asp-controller="Home" asp-action="DomainDelete">
+    <div>
+        <label>Delete domain @Model.Name; ???</label>
+    </div>
+    <div><button formmethod="post"> Delete </button><button asp-action="Index"> Cancel </button></div>
+</form>

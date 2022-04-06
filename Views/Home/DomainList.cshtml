@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TestPostfix.Models.Domain>
+@{
+    ViewData["Title"] = "Domain list";
+}
+
+<div>
+    <form asp-controller="Home" asp-action="Domainlist">
+        <table id="list" width=80%>
+            <tr>
+                <th>Domain</th>
+                <th>Description</th>
+                <th>Aliases</th>
+                <th>Mailboxes</th>
+                <th>Default alias</th>
+                <th>Backup MX</th>
+            </tr>
+            @foreach (var d in Model)
+            {
+                <tr>
+                    <td>@d.Name</td>
+                    <td>@d.Description</td>
+                    @{  
+                        int anum = 0;
+                        if (d.Aliases == null) anum = 0;
+                        else anum = d.Aliases.Count(a => a.DomainId == d.Id);
+                     }
+                    <td align="center">@anum / @d.MaxAlias</td>
+                    @{ 
+                        int mnum = 0;
+                        if (d.Mailboxes == null) mnum = 0;
+                        else mnum = d.Mailboxes.Count(m => m.DomainId == d.Id);
+                    }
+                    <td align="center">@mnum / @d.MaxMailbox</td>
+                    @{ 
+                        string a;
+                        if (d.DefaultAliases) a = "YES";
+                        else a = "NO";
+                     }
+                   <td align="center">@a</td>
+                    @{ 
+                        string m;
+                        if (d.BackupMX) m = "YES";
+                        else m = "NO";
+                    }
+                    <td align="center">@m</td>
+                   <td><a asp-controller="Home" asp-action="DomainEdit" asp-route-id="@d.Id">Edit</a></td>
+                   <td><a asp-controller="Home" asp-action="DomainDelete" asp-route-id="@d.Id">Delete</a></td>
+               </tr>
+            }
+        </table>
+    </form>
+    </div>

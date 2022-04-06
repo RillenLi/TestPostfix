@@ -1,0 +1,54 @@
+﻿@model TestPostfix.Models.Mailbox;
+
+@{
+    ViewData["Title"] = "Add mailbox";
+}
+<form asp-controller="Home" asp-action="MailboxAdd">
+    <div>
+        <table id="input">
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" asp-for="Username" size="25" required /></td>
+                <td>
+                    <select asp-for="DomainId">
+                        @foreach (Domain d in ViewBag.Domains)
+                        {
+                            <option value="@d.Id">@d.Name</option>
+                        }
+                    </select>
+                </td>
+                <td><span asp-validation-for="Username"></span></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" asp-for="Password" size="25" /></td>
+                <td><span asp-validation-for="Password"></span></td>
+            </tr>
+            <tr>
+                <td>Password(again):</td>
+                <td><input type="password" asp-for="ConfirmPassword" size="25" /></td>
+                <td><span asp-validation-for="ConfirmPassword"></span></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" asp-for="Name" size="25" /></td>
+                <td>Full name</td>
+            </tr>
+            <tr>
+                <td>Active:</td>
+                <td><input type="checkbox" name="MailboxMD.Active" /></td>
+            </tr>
+            <tr>
+                <td>Send welcome mail:</td>
+                <td><input type="checkbox" name="MailboxMD.WelcomeMail" /></td>
+            </tr>
+        </table>
+    </div>
+        <div>
+            <input type="submit" value="Add mail" /><input type="reset" value="Clear" />
+        </div>
+</form>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

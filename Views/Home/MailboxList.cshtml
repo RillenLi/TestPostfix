@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TestPostfix.Models.Mailbox>;
+
+@{
+    ViewData["Title"] = "Mailbox list";
+}
+<form asp-controller="Home" asp-action="MailboxList">
+    <table id="list" width=60%>
+        <tr>
+            <th>
+                Mail
+            </th>
+            <th>
+                Full user name
+            </th>
+            <th>
+                Active
+            </th>
+        </tr>
+        @foreach(var m in Model)
+            {
+                <tr>
+                    <td>
+                        @m.Username@@@m.Domain.Name
+                    </td>
+                    <td>
+                        @m.Name
+                    </td>
+                   @{ 
+                       string mact;
+                       if (m.Active) mact = "YES";
+                       else mact = "NO";
+                   }
+                    <td>
+                        @mact
+                    </td>
+                    <td>
+                        <a asp-controller="Home" asp-action="MailboxEdit" asp-route-id="@m.Id">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Home" asp-action="MailboxDelete" asp-route-id="@m.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+    </table>
+</form>

@@ -1,0 +1,49 @@
+﻿@model TestPostfix.Models.Mailbox;
+
+@{
+    ViewData["Title"] = "Edit mail";
+}
+<form asp-controller="Home" asp-action="MailboxEdit" asp-route-id="@Model.Id">
+    <div>
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" asp-for="Username" value="@Model.Username" /></td>
+                <td>
+                    <select asp-for="@Model.DomainId">
+                        @foreach (Domain d in ViewBag.Domains)
+                        {
+                            <option value="@d.Id">@d.Name</option>
+                        }
+                    </select>
+                </td>
+                <td><span asp-validation-for="Username"></span></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" asp-for="Password" value="@Model.Password" /></td>
+                <td><span asp-validation-for="Password"></span></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" asp-for="Name" value="@Model.Name" /></td>
+                <td>Full name</td>
+            </tr>
+            <tr>
+                <td>Active:</td>
+                <td><input type="checkbox" asp-for="Active" value="@Model.Active" /></td>
+            </tr>
+            <tr>
+                <td>Send Welcome mail:</td>
+                <td><input type="checkbox" asp-for="WelkomeMail" value="@Model.WelkomeMail" /></td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="Save changes" /><input type="reset" value="Clear" />
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

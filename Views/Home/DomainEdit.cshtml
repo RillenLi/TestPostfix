@@ -1,0 +1,48 @@
+﻿@using TestPostfix.Models;
+@model Domain;
+
+@{
+    ViewData["Title"] = "Edit domain";
+}
+
+<form asp-action="DomainEdit" asp-controller="Home" asp-route-id="@Model.Id">
+    <div>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" asp-for="Name" value="@Model.Name" /></td>
+                <td><span asp-validation-for="Name"></span></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" asp-for="Description" value="@Model.Description" /></td>
+            </tr>
+            <tr>
+                <td>Max alias:</td>
+                <td><input type="number" asp-for="MaxAlias" value="@Model.MaxAlias" /></td>
+                <td><span asp-validation-for="MaxAlias"></span></td>
+            </tr>
+            <tr>
+                <td>Max mailbox:</td>
+                <td><input type="number" asp-for="MaxMailbox" value="@Model.MaxMailbox" /></td>
+                <td><span asp-validation-for="MaxMailbox"></span></td>
+            </tr>
+            <tr>
+                <td>Add default mail alias:</td>
+                <td><input type="checkbox" asp-for="DefaultAliases" value="@Model.DefaultAliases" /></td>
+            </tr>
+            <tr>
+                <td>Mail server is backup MX:</td>
+                <td><input type="checkbox" asp-for="BackupMX" value="@Model.BackupMX" /></td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="Save changes" />
+            <input type="reset" value="Clear" />
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

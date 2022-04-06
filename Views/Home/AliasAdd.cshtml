@@ -1,0 +1,42 @@
+﻿@model TestPostfix.Models.Alias;
+
+@{
+    ViewData["Title"] = "Add alias";
+}
+<form asp-controller="Home" asp-action="AliasAdd">
+    <div>
+        <table id="input">
+            <tr>
+                <td>Alias:</td>
+                <td><input type="text" asp-for="Name" size="25" required /></td>
+                <td>
+                    <select asp-for="DomainId">
+                        @foreach (Domain d in ViewBag.Domains)
+                        {
+                            <option value="@d.Id">@d.Name</option>
+                        }
+                    </select>
+                </td>
+                <td><span asp-validation-for="Name"></span></td>
+            </tr>
+            <tr>
+                <td>To: </td>
+                <td><input type="text" asp-for="MailToSent" size="25" required /></td>
+                <td>Where the mail needs to be sent to.</td>
+                <td><span asp-validation-for="MailToSent"></span></td>
+            </tr>
+            <tr>
+
+                <td>Active:</td>
+                <td><input type="checkbox" asp-for="Active" /></td>
+            </tr>
+        </table>
+        <div><input type="submit" value="Add alias" /><input type="reset" value="Clear" /></div>
+    </div>
+</form>
+
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

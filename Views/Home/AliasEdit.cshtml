@@ -1,0 +1,40 @@
+﻿@model TestPostfix.Models.Alias;
+@{
+    ViewData["Title"] = "Edit alias";
+}
+
+<form asp-controller="Home" asp-action="AliasEdit" asp-route-id="@Model.Id">
+    <div>
+        <table id="input">
+            <tr>
+                <td>Alias:</td>
+                <td><input type="text" asp-for="Name" value="@Model.Name" /></td>
+                <td>
+                    <select asp-for="DomainId">
+                        @foreach (Domain d in ViewBag.Domains)
+                        {
+                            <option value="@d.Id">@d.Name</option>
+                        }
+                    </select>
+                </td>
+                <td><span asp-validation-for="@Model.Name"></span></td>
+            </tr>
+            <tr>
+                <td>To:</td>
+                <td><input type="text" asp-for="MailToSent" value="@Model.MailToSent" /></td>
+                <td><span asp-validation-for="@Model.MailToSent"></span></td>
+            </tr>
+            <tr>
+                <td>Active:</td>
+                <td><input type="checkbox" asp-for="Active" value="@Model.Active" /></td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="Save changes" /><input type="reset" value="Clear"/>
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,50 @@
+﻿@model TestPostfix.Models.Domain;
+@{
+    ViewData["Title"] = "Domain Add";
+}
+<div>
+    <form asp-controller="Home" asp-action="DomainAdd">
+        <div>
+            <table id="input">
+                <tr>
+                    <td>Domain:</td>
+                    <td><input type="text" asp-for="Name" size="25" required></td>
+                    <td><span asp-validation-for="Name"></span></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><input type="text" asp-for="Description" size="30"></td>
+                </tr>
+                <tr>
+                    <td>Aliases:</td>
+                    <td><input type="number" asp-for="MaxAlias" required /></td>
+                    <td>-1 = disable | 0 = unlimited</td>
+                    <td><span asp-validation-for="MaxAlias"></span></td>
+                </tr>
+                <tr>
+                    <td>Mailboxes:</td>
+                    <td><input type="number" asp-for="MaxMailbox" required /></td>
+                    <td>-1 = disable | 0 = unlimited</td>
+                    <td><span asp-validation-for="MaxMailbox"></span></td>
+                </tr>
+                <tr>
+                    <td>Add default mail alias:</td>
+                    <td><input type="checkbox" asp-for="DefaultAliases" /></td>
+                </tr>
+                <tr>
+                    <td>Mail server is backup MX:</td>
+                    <td><input type="checkbox" asp-for="BackupMX" /></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Add domain" />
+                <input type="reset" value="Clear" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

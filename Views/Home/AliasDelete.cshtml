@@ -1,0 +1,11 @@
+﻿@model TestPostfix.Models.Alias;
+
+@{
+    ViewData["Title"] = "Alias delete";
+}
+<form asp-action="AliasDelete" asp-controller="Home" asp-route-id="@Model.Id">
+    <div>
+        <label>Are you sure you want to delete @Model.Name?</label>
+    </div>
+    <div><button formmethod="post"> Delete </button><button asp-action="Index"> Cancel </button></div>
+</form>
